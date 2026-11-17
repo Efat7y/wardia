@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Safe areas for mobile devices */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+
+/* ================= PRINT ENGINE: PERFECT A4 DOCUMENTS ================= */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 10mm 15mm 10mm;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+    line-height: 1.35 !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide all app navigation, headers, footers, main page background and modal overlays during print */
+  header, footer, nav, aside,
+  .print\:hidden,
+  [data-print-hidden="true"] {
+    display: none !important;
+  }
+
+  /* When printing, hide the background dashboard / main page content */
+  body:has(.printable-document) > div > div > main,
+  body:has(.printable-document) > div > main,
+  body:has(.printable-document) main:not(:has(.printable-document)) {
+    display: none !important;
+  }
+
+  /* Force modal backdrop and wrapper to expand fully across the page */
+  .fixed.inset-0:has(.printable-document) {
+    position: static !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+    backdrop-filter: none !important;
+  }
+
+  .shadow-2xl, .shadow-xl, .shadow-md, .shadow-sm, .shadow-xs, .shadow-inner {
+    box-shadow: none !important;
+  }
+
+  .rounded-3xl, .rounded-2xl {
+    border-radius: 0 !important;
+  }
+
+  .border {
+    border-color: #cbd5e1 !important;
+  }
+
+  /* Printable container fills the entire printable A4 sheet */
+  .printable-document {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: #ffffff !important;
+    overflow: visible !important;
+  }
+
+  /* Ensure tables render completely and repeat headers across page breaks */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tfoot {
+    display: table-footer-group;
+  }
+
+  th, td {
+    padding: 6pt 4pt !important;
+  }
+
+  /* Keep signatures together at bottom of document */
+  .print-avoid-break {
+    page-break-inside: avoid !important;
+  }
+}

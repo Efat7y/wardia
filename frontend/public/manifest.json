@@ -1,0 +1,17 @@
+{
+  "name": "وردية - منصة تشغيل العمالة الصناعية",
+  "short_name": "وردية",
+  "description": "منصة إدارة وتشغيل شفتات العمالة الصناعية وحجز الورديات الفوري",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#0284c7",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
